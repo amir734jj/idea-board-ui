@@ -3,23 +3,19 @@ const buildActions = (actionNames) => ({
     type: actionNames.request,
     payload: data,
   }),
-  failure: (err) => {
-    return {
-      type: actionNames.failure,
-      error: true,
-      payload: {
-        message: err.message,
-        stack: err.stack,
-      },
-    };
-  },
-  success: (data) => {
-    return {
-      type: actionNames.success,
-      error: false,
-      payload: data,
-    };
-  },
+  failure: (err) => ({
+    type: actionNames.failure,
+    error: true,
+    payload: {
+      message: err.message,
+      stack: err.stack,
+    },
+  }),
+  success: (data) => ({
+    type: actionNames.success,
+    error: false,
+    payload: data,
+  }),
 });
 
 const createAsyncAction = (actionNames, asyncFn, data) => {

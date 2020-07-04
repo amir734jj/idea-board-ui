@@ -2,37 +2,56 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { register } from '../../actions';
 import { connect } from 'react-redux';
+import {Button, Form, FormGroup} from "react-bootstrap";
 
-const Form = (props) => {
+const RegisterForm = (props) => {
   const { register, handleSubmit, errors } = useForm();
 
   return (
-    <form onSubmit={handleSubmit(props.login)}>
-      <div className="form-group">
-        <label htmlFor="name">Name:</label>
-        <input name="name" type="text" className="form-control" id="name" ref={register({ required: true })} />
-      </div>
-      <div className="form-group">
-        <label htmlFor="email">Email address:</label>
-        <input name="name" type="email" className="form-control" id="email" ref={register({ required: true })} />
-      </div>
-      <div className="form-group">
-        <label htmlFor="username">Username:</label>
-        <input name="username" type="text" className="form-control" id="username" ref={register({ required: true })} />
-      </div>
-      <div className="form-group">
-        <label htmlFor="password">Password:</label>
-        <input name="password" type="password" className="form-control" id="password" ref={register({ required: true })} />
-      </div>
-      <button type="submit" className="btn btn-default">Submit</button>
-    </form>
+    <div className='mt-3'>
+      <Form onSubmit={handleSubmit(props.register)} className='pure-form pure-form-aligned'>
+        <FormGroup>
+          <Form.Label htmlFor="name">Name</Form.Label>
+          <Form.Control name="name" type="text" className="form-control" id="name"
+                        isInvalid={errors.name}
+                        ref={register({required: true})}/>
+          {errors.name && <Form.Control.Feedback type="invalid">>This field is required</Form.Control.Feedback>}
+        </FormGroup>
+        <FormGroup>
+          <Form.Label htmlFor="email">Email</Form.Label>
+          <Form.Control name="email" type="email" className="form-control" id="email"
+                        isInvalid={errors.email}
+                        ref={register({required: true})}/>
+          {errors.email && <Form.Control.Feedback type="invalid">>This field is required</Form.Control.Feedback>}
+        </FormGroup>
+        <FormGroup>
+          <Form.Label htmlFor="username">Username</Form.Label>
+          <Form.Control name="username" type="text" className="form-control" id="username"
+                        isInvalid={errors.username}
+                        ref={register({required: true})}/>
+          {errors.username && <Form.Control.Feedback type="invalid">>This field is required</Form.Control.Feedback>}
+        </FormGroup>
+        <FormGroup>
+          <Form.Label htmlFor="password">Password</Form.Label>
+          <Form.Control name="password" type="password" className="form-control" id="password"
+                        isInvalid={errors.password}
+                        ref={register({required: true})}/>
+          {errors.password && <Form.Control.Feedback type='invalid'>This field is required</Form.Control.Feedback>}
+        </FormGroup>
+        <Button type='primary'>Submit</Button>
+      </Form>
+    </div>
   );
 }
 
 class Register extends React.Component {
 
   render() {
-    return <Form login={(data, event) => this.props.register(data)} />
+    return (
+      <div className='mt-3'>
+        <RegisterForm login={(data, event) => this.props.register(data)}/>
+      </div>
+    );
   }
 
 }

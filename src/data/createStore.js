@@ -6,12 +6,11 @@ import { rootReducer } from "../reducers";
 
 const composeEnhancers = composeWithDevTools({});
 
-const store = createStore((preLoadedStore) =>
+const store = (preLoadedStore) =>
   createStore(
     rootReducer,
     preLoadedStore,
     composeEnhancers(applyMiddleware(thunk))
-  )
-);
+  );
 
 export default store;

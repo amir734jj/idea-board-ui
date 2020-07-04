@@ -23,7 +23,10 @@ class App extends React.Component {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <LinkContainer to="/">
-                <Nav.Link>Home</Nav.Link>
+                <Nav.Link>Board</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/">
+                <Nav.Link>About</Nav.Link>
               </LinkContainer>
             </Nav>
             <Nav className="ml-auto">

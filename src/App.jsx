@@ -59,7 +59,7 @@ class App extends React.Component {
 
 const mapStateToProps = (store) => {
   return {
-    email: store
+    email: store.user.email
   };
 }
 

@@ -4,6 +4,14 @@ export const buildActionNames = (type) => ({
   failure: `${type}.FAILURE`,
 });
 
-export const LOGIN = buildActionNames("login");
+// account
+export const LOGIN = buildActionNames("LOGIN");
+export const REGISTER = buildActionNames("REGISTER");
 
-export const REGISTER = buildActionNames("register");
+// idea
+export const GET_IDEA = buildActionNames("GET_IDEA");
+export const SAVE_IDEA = buildActionNames("SAVE_IDEA");
+export const UPDATE_IDEA = buildActionNames("UPDATE_IDEA");
+
+// board
+export const GET_BOARD = buildActionNames("GET_BOARD");

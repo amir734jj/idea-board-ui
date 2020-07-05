@@ -32,9 +32,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className='mt-3'>
-        <LoginForm login={(data, event) => this.props.login(data)}/>
-      </div>
+      <LoginForm login={(data, event) => this.props.login(data)}/>
     );
   }
 

@@ -48,9 +48,7 @@ class Register extends React.Component {
 
   render() {
     return (
-      <div className='mt-3'>
-        <RegisterForm login={(data, event) => this.props.register(data)}/>
-      </div>
+      <RegisterForm login={(data, event) => this.props.register(data)}/>
     );
   }
 

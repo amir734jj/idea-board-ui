@@ -7,12 +7,20 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import Register from './components/account/Register';
-import Login from './components/account/Login';
+import {Register, Login} from './components/account';
 import {Navbar, Nav, Container} from "react-bootstrap";
 import {LinkContainer} from 'react-router-bootstrap'
+import About from "./components/about";
 
 class App extends React.Component {
+
+  wrapComponent(thing) {
+    return (
+      <div className='mt-3'>
+        {thing}
+      </div>
+    )
+  }
 
   render() {
     return (
@@ -22,10 +30,10 @@ class App extends React.Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav"/>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <LinkContainer to="/">
+              <LinkContainer to="/home">
                 <Nav.Link>Board</Nav.Link>
               </LinkContainer>
-              <LinkContainer to="/">
+              <LinkContainer to="/about">
                 <Nav.Link>About</Nav.Link>
               </LinkContainer>
             </Nav>
@@ -42,10 +50,13 @@ class App extends React.Component {
         <Container>
           <Switch>
             <Route path="/login">
-              <Login/>
+              {this.wrapComponent(<Login/>)}
             </Route>
             <Route path="/register">
-              <Register/>
+              {this.wrapComponent(<Register/>)}
+            </Route>
+            <Route path="/about">
+              {this.wrapComponent(<About/>)}
             </Route>
             <Route path="/">
               Hello world!

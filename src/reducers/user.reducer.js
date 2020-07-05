@@ -5,7 +5,7 @@ const initialState = {
   expiration: null,
 };
 
-export const userInfoReducer = (state = initialState, action) => {
+export const userReducer = (state = initialState, action) => {
   switch(action) {
     default:
       return state;

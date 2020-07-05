@@ -26,7 +26,7 @@ class App extends React.Component {
     return (
       <Router>
         <Navbar bg="light" expand="lg">
-          <Navbar.Brand href="">idea-board-ui</Navbar.Brand>
+          <Navbar.Brand href="">{this.props.name}</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav"/>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
@@ -68,9 +68,9 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = (store) => {
+const mapStateToProps = ({global}) => {
   return {
-    email: store.user.email
+    name: global.name
   };
 }
 

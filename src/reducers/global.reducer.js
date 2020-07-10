@@ -1,5 +1,5 @@
 const initialState = {
-  name: 'idea-board-ui'
+  name: 'Anahita'
 };
 
 export const globalReducer = (state = initialState, action) => {

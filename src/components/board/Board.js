@@ -1,14 +1,15 @@
 import React from 'react';
 import {connect} from "react-redux";
+import {Idea} from "../idea";
 
-export const Board = ({ name }) => (<div>
-  Welcome to {name}
+export const Board = ({ ideas }) => (<div>
+  { ideas.map(idea => (<Idea {...idea} />))}
 </div>)
 
 
-const mapStateToProps = ({global }) => {
+const mapStateToProps = (state) => {
   return {
-    name: global.name
+    ideas: state.idea.ideas
   };
 }
 

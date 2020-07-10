@@ -11,16 +11,9 @@ import {Register, Login} from './components/account';
 import {Navbar, Nav, Container} from "react-bootstrap";
 import {LinkContainer} from 'react-router-bootstrap'
 import About from "./components/about";
+import Board from "./components/board";
 
 class App extends React.Component {
-
-  wrapComponent(thing) {
-    return (
-      <div className='mt-3'>
-        {thing}
-      </div>
-    )
-  }
 
   render() {
     return (
@@ -47,22 +40,24 @@ class App extends React.Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <Container>
-          <Switch>
-            <Route path="/login">
-              {this.wrapComponent(<Login/>)}
-            </Route>
-            <Route path="/register">
-              {this.wrapComponent(<Register/>)}
-            </Route>
-            <Route path="/about">
-              {this.wrapComponent(<About/>)}
-            </Route>
-            <Route path="/">
-              Hello world!
-            </Route>
-          </Switch>
-        </Container>
+        <div className='mt-4'>
+          <Container>
+            <Switch>
+              <Route path="/login">
+                <Login/>
+              </Route>
+              <Route path="/register">
+                <Register/>
+              </Route>
+              <Route path="/about">
+                <About/>
+              </Route>
+              <Route path="/">
+                <Board/>
+              </Route>
+            </Switch>
+          </Container>
+        </div>
       </Router>
     );
   }

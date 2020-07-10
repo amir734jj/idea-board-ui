@@ -1,8 +1,12 @@
 const initialState = {
-  ideas: []
+  ideas: [ {
+    header: 'header',
+    title: 'title',
+    body: 'body'
+  }]
 };
 
-export const globalReducer = (state = initialState, action) => {
+export const ideaReducer = (state = initialState, action) => {
   switch(action) {
     default:
       return state;

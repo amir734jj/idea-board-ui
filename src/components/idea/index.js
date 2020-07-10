@@ -9,7 +9,7 @@ export const Idea = ({ header, title, body }) => (<div>
       <Card.Text>
         {body}
       </Card.Text>
-      <Button variant="primary">Continue</Button>
+      <Button variant="success">Read more</Button>
     </Card.Body>
   </Card>
 </div>)

@@ -8,6 +8,8 @@ export const buildActionNames = (type) => ({
 export const LOGIN = buildActionNames('LOGIN');
 export const REGISTER = buildActionNames('REGISTER');
 export const LOGOUT = buildActionNames('LOGOUT');
+export const ACCOUNT = buildActionNames('ACCOUNT');
+export const REFRESH = buildActionNames('REFRESH');
 
 // idea
 export const GET_IDEA = buildActionNames('GET_IDEA');

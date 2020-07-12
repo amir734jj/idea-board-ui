@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, Button } from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 
 export function AlertDismissible({ message, header }) {
   const [show, setShow] = useState(true);
@@ -12,5 +12,5 @@ export function AlertDismissible({ message, header }) {
       </Alert>
     );
   }
-  return <Button onClick={() => setShow(true)}>Show Alert</Button>;
+  return null;
 }

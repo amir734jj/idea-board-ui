@@ -7,7 +7,7 @@ const buildActions = (actionNames) => ({
     type: actionNames.failure,
     error: true,
     payload: {
-      ...err.response.data,
+      ...err.response?.data,
       message: err.message,
       stack: err.stack,
     },

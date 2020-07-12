@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
+import store from 'store';
 import { login as loginAction } from '../../actions';
 import { AlertDismissible } from '../common/AlertDismissible';
 
@@ -46,8 +47,8 @@ class Login extends React.Component {
     this.state = { redirect: false };
   }
 
-  handleLogin = async () => {
-    await this.props.login();
+  handleLogin = async (...args) => {
+    await this.props.login(...args);
     this.setState({ redirect: !this.props.error });
   }
 
@@ -70,7 +71,10 @@ const mapStateToProps = ({ account }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  login: (user) => dispatch(loginAction(user)),
+  login: async (user) => {
+    const { payload: { token } } = await dispatch(loginAction(user));
+    store.set('token', token);
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

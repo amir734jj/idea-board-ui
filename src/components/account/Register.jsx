@@ -72,8 +72,8 @@ class Register extends React.Component {
     this.state = { redirect: false };
   }
 
-  handleRegister = async () => {
-    await this.props.register();
+  handleRegister = async (...args) => {
+    await this.props.register(...args);
     this.setState({ redirect: !this.props.error });
   }
 

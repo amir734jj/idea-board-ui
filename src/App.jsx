@@ -9,11 +9,21 @@ import {
 } from 'react-router-dom';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import store from 'store';
+import jwtDecode from 'jwt-decode';
+import moment from 'moment';
 import { Register, Login, Logout } from './components/account';
 import About from './components/about';
 import Board from './components/board';
+import { accountInfo, refreshToken } from './actions';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.props.refreshAccount().then();
+  }
+
   render() {
     const { name, loggedIn } = this.props;
 
@@ -81,8 +91,25 @@ const mapStateToProps = ({ global, account }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  handleIncrementClick: () => dispatch({ type: 'INCREMENT' }),
-  handleDecrementClick: () => dispatch({ type: 'DECREMENT' }),
+  refreshAccount: async () => {
+    const token = store.get('token');
+
+    if (token) {
+      const { exp } = jwtDecode(token);
+      const now = new Date(0);
+      now.setUTCSeconds(exp);
+      const untilTokenExpires = moment.duration(moment(now).diff(moment()));
+
+      if (untilTokenExpires.asMinutes() > 5) {
+        await dispatch(accountInfo());
+
+        setTimeout(async () => {
+          const { token: updatedToken } = dispatch(refreshToken());
+          store.set('token', updatedToken);
+        }, untilTokenExpires.subtract(1, 'minutes'));
+      }
+    }
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

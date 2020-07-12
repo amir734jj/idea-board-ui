@@ -7,6 +7,7 @@ export const buildActionNames = (type) => ({
 // account
 export const LOGIN = buildActionNames('LOGIN');
 export const REGISTER = buildActionNames('REGISTER');
+export const LOGOUT = buildActionNames('LOGOUT');
 
 // idea
 export const GET_IDEA = buildActionNames('GET_IDEA');

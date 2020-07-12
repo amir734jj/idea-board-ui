@@ -1,4 +1,4 @@
-import { LOGIN, REGISTER } from '../constants';
+import { LOGIN, LOGOUT, REGISTER } from '../constants';
 
 const initialState = {
   name: null,
@@ -7,6 +7,7 @@ const initialState = {
   expiration: null,
   fetching: false,
   error: null,
+  loggedIn: false,
 };
 
 export const accountReducer = (state = initialState, action) => {
@@ -53,7 +54,25 @@ export const accountReducer = (state = initialState, action) => {
         ...action.payload,
         fetching: false,
         error: null,
+        loggedIn: true,
       };
+    case LOGOUT.request:
+      return {
+        ...state,
+        fetching: true,
+        error: null,
+      };
+    case LOGOUT.failure:
+      return {
+        ...state,
+        fetching: true,
+        error: [
+          action.payload.message,
+          action.payload.errors,
+        ],
+      };
+    case LOGOUT.success:
+      return initialState;
     default:
       return state;
   }

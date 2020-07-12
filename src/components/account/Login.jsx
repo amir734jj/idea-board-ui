@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom';
 import { login as loginAction } from '../../actions';
 import { AlertDismissible } from '../common/AlertDismissible';
 
@@ -40,13 +41,25 @@ const LoginForm = ({ login }) => {
 };
 
 class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { redirect: false };
+  }
+
+  handleLogin = async () => {
+    await this.props.login();
+    this.setState({ redirect: !this.props.error });
+  }
+
   render() {
-    const { login, error } = this.props;
+    const { redirect } = this.state;
+    const { error } = this.props;
 
     return (
       <>
-        { error ? <AlertDismissible header="Login Failed" message={error} /> : null }
-        <LoginForm login={login} />
+        { error ? <AlertDismissible header="Login Failed" message={error.join('\n')} /> : null }
+        <LoginForm login={this.handleLogin} />
+        { redirect ? <Redirect push to="/" /> : null }
       </>
     );
   }

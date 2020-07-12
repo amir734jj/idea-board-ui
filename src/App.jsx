@@ -9,13 +9,13 @@ import {
 } from 'react-router-dom';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Register, Login } from './components/account';
+import { Register, Login, Logout } from './components/account';
 import About from './components/about';
 import Board from './components/board';
 
 class App extends React.Component {
   render() {
-    const { name } = this.props;
+    const { name, loggedIn } = this.props;
 
     return (
       <Router>
@@ -32,12 +32,20 @@ class App extends React.Component {
               </LinkContainer>
             </Nav>
             <Nav className="ml-auto">
-              <LinkContainer to="/Register">
-                <Nav.Link>Register</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/login">
-                <Nav.Link>Login</Nav.Link>
-              </LinkContainer>
+              { !loggedIn ? (
+                <>
+                  <LinkContainer to="/register">
+                    <Nav.Link>Register</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to="/login">
+                    <Nav.Link>Login</Nav.Link>
+                  </LinkContainer>
+                </>
+              ) : (
+                <LinkContainer to="/login">
+                  <Nav.Link>Logout</Nav.Link>
+                </LinkContainer>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -53,6 +61,9 @@ class App extends React.Component {
               <Route path="/about">
                 <About />
               </Route>
+              <Route path="/logout">
+                <Logout />
+              </Route>
               <Route path="/">
                 <Board />
               </Route>
@@ -64,8 +75,9 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ global }) => ({
+const mapStateToProps = ({ global, account }) => ({
   name: global.name,
+  loggedIn: account.loggedIn,
 });
 
 const mapDispatchToProps = (dispatch) => ({

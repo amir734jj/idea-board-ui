@@ -1,15 +1,3 @@
-import React from 'react';
-import {Button, Card} from "react-bootstrap";
+import Idea from './Idea';
 
-export const Idea = ({ header, title, body }) => (<div>
-  <Card>
-    <Card.Header>{header}</Card.Header>
-    <Card.Body>
-      <Card.Title>{title}</Card.Title>
-      <Card.Text>
-        {body}
-      </Card.Text>
-      <Button variant="success">Read more</Button>
-    </Card.Body>
-  </Card>
-</div>)
+export default Idea;

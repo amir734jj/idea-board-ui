@@ -5,13 +5,13 @@ export const buildActionNames = (type) => ({
 });
 
 // account
-export const LOGIN = buildActionNames("LOGIN");
-export const REGISTER = buildActionNames("REGISTER");
+export const LOGIN = buildActionNames('LOGIN');
+export const REGISTER = buildActionNames('REGISTER');
 
 // idea
-export const GET_IDEA = buildActionNames("GET_IDEA");
-export const SAVE_IDEA = buildActionNames("SAVE_IDEA");
-export const UPDATE_IDEA = buildActionNames("UPDATE_IDEA");
+export const GET_IDEA = buildActionNames('GET_IDEA');
+export const SAVE_IDEA = buildActionNames('SAVE_IDEA');
+export const UPDATE_IDEA = buildActionNames('UPDATE_IDEA');
 
 // board
-export const GET_BOARD = buildActionNames("GET_BOARD");
+export const GET_BOARD = buildActionNames('GET_BOARD');

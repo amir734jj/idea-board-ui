@@ -1,13 +1,13 @@
 const initialState = {
-  ideas: [ {
+  ideas: [{
     header: 'header',
     title: 'title',
-    body: 'body'
-  }]
+    body: 'body',
+  }],
 };
 
 export const ideaReducer = (state = initialState, action) => {
-  switch(action) {
+  switch (action) {
     default:
       return state;
   }

@@ -1,26 +1,27 @@
 import React from 'react';
 import './App.css';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import {
   BrowserRouter as Router,
   Switch,
-  Route
-} from "react-router-dom";
-import {Register, Login} from './components/account';
-import {Navbar, Nav, Container} from "react-bootstrap";
-import {LinkContainer} from 'react-router-bootstrap'
-import About from "./components/about";
-import Board from "./components/board";
+  Route,
+} from 'react-router-dom';
+import { Navbar, Nav, Container } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Register, Login } from './components/account';
+import About from './components/about';
+import Board from './components/board';
 
 class App extends React.Component {
-
   render() {
+    const { name } = this.props;
+
     return (
       <Router>
         <Navbar bg="light" expand="lg">
-          <Navbar.Brand href="">{this.props.name}</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+          <Navbar.Brand href="">{name}</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <LinkContainer to="/home">
@@ -40,20 +41,20 @@ class App extends React.Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <div className='mt-4'>
+        <div className="mt-4">
           <Container>
             <Switch>
               <Route path="/login">
-                <Login/>
+                <Login />
               </Route>
               <Route path="/register">
-                <Register/>
+                <Register />
               </Route>
               <Route path="/about">
-                <About/>
+                <About />
               </Route>
               <Route path="/">
-                <Board/>
+                <Board />
               </Route>
             </Switch>
           </Container>
@@ -63,18 +64,13 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({global}) => {
-  return {
-    name: global.name
-  };
-}
+const mapStateToProps = ({ global }) => ({
+  name: global.name,
+});
 
-
-const mapDispatchToProps = dispatch => {
-  return {
-    handleIncrementClick: () => dispatch({type: 'INCREMENT'}),
-    handleDecrementClick: () => dispatch({type: 'DECREMENT'})
-  }
-}
+const mapDispatchToProps = (dispatch) => ({
+  handleIncrementClick: () => dispatch({ type: 'INCREMENT' }),
+  handleDecrementClick: () => dispatch({ type: 'DECREMENT' }),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,10 +1,10 @@
-import {combineReducers} from 'redux';
-import {userReducer} from './user.reducer';
-import {globalReducer} from "./global.reducer";
-import {ideaReducer} from "./idea.reducer";
+import { combineReducers } from 'redux';
+import { accountReducer } from './account.reducer';
+import { globalReducer } from './global.reducer';
+import { ideaReducer } from './idea.reducer';
 
 export const rootReducer = combineReducers({
-  user: userReducer,
+  account: accountReducer,
   idea: ideaReducer,
   global: globalReducer,
 });

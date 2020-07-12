@@ -1,8 +1,15 @@
-import { createAsyncAction, axios } from "../utilities";
-import { LOGIN, REGISTER } from "../constants";
+import store from 'store';
 
-export const login = user =>
-  createAsyncAction(LOGIN, () => axios.post("/account/login", user), user);
+import { createAsyncAction, axios } from '../utilities';
+import { LOGIN, REGISTER } from '../constants';
 
-export const register = user =>
-  createAsyncAction(REGISTER, () => axios.post("/account/register", user), user);
+export const login = (user) => createAsyncAction(LOGIN, () => axios().post('/account/login', user)
+  .then((response) => {
+    const { data } = response;
+    store.set('token', data.token);
+
+    return data;
+  }), user);
+
+export const register = (user) => createAsyncAction(REGISTER, () => axios.post('/account/register', user)
+  .then((response) => response.data), user);

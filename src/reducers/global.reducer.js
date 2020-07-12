@@ -1,9 +1,9 @@
 const initialState = {
-  name: 'Anahita'
+  name: 'Anahita',
 };
 
 export const globalReducer = (state = initialState, action) => {
-  switch(action) {
+  switch (action) {
     default:
       return state;
   }

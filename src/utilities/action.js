@@ -7,6 +7,7 @@ const buildActions = (actionNames) => ({
     type: actionNames.failure,
     error: true,
     payload: {
+      ...err.response.data,
       message: err.message,
       stack: err.stack,
     },
@@ -21,19 +22,13 @@ const buildActions = (actionNames) => ({
 const createAsyncAction = (actionNames, asyncFn, data) => {
   const actions = buildActions(actionNames);
 
-  const actionCreator = (dispatch, getState) => {
+  return (dispatch, getState) => {
     dispatch(actions.request(data));
     const state = getState();
     return asyncFn(state, dispatch)
-      .then((result) => {
-        return dispatch(actions.success(result));
-      })
-      .catch((err) => {
-        return dispatch(actions.failure(err));
-      });
+      .then((result) => dispatch(actions.success(result)))
+      .catch((err) => dispatch(actions.failure(err)));
   };
-
-  return actionCreator;
 };
 
 export { buildActions, createAsyncAction };

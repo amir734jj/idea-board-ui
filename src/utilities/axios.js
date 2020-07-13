@@ -5,7 +5,7 @@ export const axios = axiosClient.create({
   baseURL: '/api/',
   timeout: 5000,
   headers: {
-    Authorization: store.get('token'),
+    Authorization: `Bearer ${store.get('token')}`,
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers':

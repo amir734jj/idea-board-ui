@@ -16,6 +16,7 @@ import { Register, Login, Logout } from './components/account';
 import About from './components/about';
 import Board from './components/board';
 import { accountInfo, refreshToken } from './actions';
+import Profile from './components/profile';
 
 class App extends React.Component {
   constructor(props) {
@@ -52,9 +53,14 @@ class App extends React.Component {
                   </LinkContainer>
                 </>
               ) : (
-                <LinkContainer to="/login">
-                  <Nav.Link>Logout</Nav.Link>
-                </LinkContainer>
+                <>
+                  <LinkContainer to="/profile">
+                    <Nav.Link>Profile</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to="/logout">
+                    <Nav.Link>Logout</Nav.Link>
+                  </LinkContainer>
+                </>
               )}
             </Nav>
           </Navbar.Collapse>
@@ -73,6 +79,9 @@ class App extends React.Component {
               </Route>
               <Route path="/logout">
                 <Logout />
+              </Route>
+              <Route path="/profile">
+                <Profile />
               </Route>
               <Route path="/">
                 <Board />

@@ -30,7 +30,7 @@ export const accountReducer = (state = initialState, action) => {
     case LOGOUT.failure:
       return {
         ...state,
-        fetching: true,
+        fetching: false,
         error: [
           action.payload.message,
           action.payload.errors,

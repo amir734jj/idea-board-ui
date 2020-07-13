@@ -28,5 +28,6 @@ module.exports = {
     'react/no-array-index-key': 0,
     'import/prefer-default-export': 0,
     'react/destructuring-assignment': 0,
+    'import/no-named-as-default': 0,
   },
 };

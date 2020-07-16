@@ -22,3 +22,6 @@ export const GET_BOARD = buildActionNames('GET_BOARD');
 // profile
 export const GET_PROFILE = buildActionNames('GET_PROFILE');
 export const UPDATE_PROFILE = buildActionNames('UPDATE_PROFILE');
+
+// category
+export const GET_CATEGORIES = buildActionNames('GET_CATEGORIES');

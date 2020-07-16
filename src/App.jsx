@@ -17,6 +17,9 @@ import About from './components/about';
 import Board from './components/board';
 import { accountInfo, refreshToken } from './actions';
 import Profile from './components/profile';
+import Manage from './components/manage';
+import AddIdea from './components/idea/add';
+import Category from './components/category/Category';
 
 class App extends React.Component {
   constructor(props) {
@@ -54,6 +57,9 @@ class App extends React.Component {
                 </>
               ) : (
                 <>
+                  <LinkContainer to="/manage">
+                    <Nav.Link>Manage</Nav.Link>
+                  </LinkContainer>
                   <LinkContainer to="/profile">
                     <Nav.Link>Profile</Nav.Link>
                   </LinkContainer>
@@ -67,6 +73,7 @@ class App extends React.Component {
         </Navbar>
         <div className="mt-4">
           <Container>
+            <Category />
             <Switch>
               <Route path="/login">
                 <Login />
@@ -82,6 +89,12 @@ class App extends React.Component {
               </Route>
               <Route path="/profile">
                 <Profile />
+              </Route>
+              <Route path="/manage">
+                <Manage />
+              </Route>
+              <Route path="/idea/new">
+                <AddIdea />
               </Route>
               <Route path="/">
                 <Board />

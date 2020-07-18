@@ -63,7 +63,7 @@ export class Profile extends React.Component {
   render() {
     return (
       <div>
-        {this.props.error ? <AlertDismissible header="Login Failed" message={this.props.error.join('\n')} /> : null}
+        {this.props.error ? <AlertDismissible header="Login Failed" message={this.props.error.join('\n')} variant="danger" /> : null}
         <h3>
           Profile
         </h3>

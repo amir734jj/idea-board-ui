@@ -14,7 +14,7 @@ export class Category extends React.Component {
 
     return (
       <>
-        { error ? <AlertDismissible header="Login Failed" message={error.join('\n')} /> : null }
+        { error ? <AlertDismissible header="Login Failed" message={error.join('\n')} variant="danger" /> : null }
       </>
     );
   }

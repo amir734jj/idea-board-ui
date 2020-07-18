@@ -26,7 +26,7 @@ class Logout extends React.Component {
 
     return (
       <>
-        { error ? <AlertDismissible header="Register Failed" message={error.join('\n')} /> : null }
+        { error ? <AlertDismissible header="Register Failed" message={error.join('\n')} variant="danger" /> : null }
         { redirect ? <Redirect push to="/login" /> : null }
       </>
     );

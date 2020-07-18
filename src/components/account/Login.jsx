@@ -58,7 +58,7 @@ class Login extends React.Component {
 
     return (
       <>
-        { error ? <AlertDismissible header="Login Failed" message={error.join('\n')} /> : null }
+        { error ? <AlertDismissible header="Login Failed" message={error.join('\n')} variant="danger" /> : null }
         <LoginForm login={this.handleLogin} />
         { redirect ? <Redirect push to="/" /> : null }
       </>

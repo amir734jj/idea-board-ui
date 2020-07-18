@@ -83,7 +83,7 @@ class Register extends React.Component {
 
     return (
       <>
-        { error ? <AlertDismissible header="Register Failed" message={error.join('\n')} /> : null }
+        { error ? <AlertDismissible header="Register Failed" message={error.join('\n')} variant="danger" /> : null }
         <RegisterForm register={this.handleRegister} />
         { redirect ? <Redirect push to="/login" /> : null }
       </>

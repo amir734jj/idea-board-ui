@@ -11,7 +11,7 @@ export const LOGOUT = buildActionNames('LOGOUT');
 export const ACCOUNT = buildActionNames('ACCOUNT');
 export const REFRESH = buildActionNames('REFRESH');
 
-// idea
+// project
 export const GET_IDEA = buildActionNames('GET_IDEA');
 export const SAVE_IDEA = buildActionNames('SAVE_IDEA');
 export const UPDATE_IDEA = buildActionNames('UPDATE_IDEA');

@@ -2,7 +2,8 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup } from 'react-bootstrap';
-import { history } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'redux';
 import { saveIdea as saveIdeaAction } from '../../../actions';
 import { AlertDismissible } from '../../common/AlertDismissible';
 
@@ -49,6 +50,7 @@ const AddIdeaForm = ({ addIdea, categories }) => {
 
 export class AddIdea extends React.Component {
   handleAddIdea = async ({ categories, ...idea }) => {
+    const { history } = this.props;
     const data = {
       ...idea,
       categories: this.props.categories.filter(({ name }) => categories.includes(name)),
@@ -83,4 +85,7 @@ const mapDispatchToProps = (dispatch) => ({
   addIdea: (idea) => dispatch(saveIdeaAction(idea)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddIdea);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps),
+)(AddIdea);

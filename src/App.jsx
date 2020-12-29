@@ -18,7 +18,7 @@ import Board from './components/board';
 import { accountInfo, refreshToken } from './actions';
 import Profile from './components/profile';
 import Manage from './components/manage';
-import AddIdea from './components/idea/add';
+import AddIdea from './components/project/add';
 import Category from './components/category/Category';
 
 class App extends React.Component {

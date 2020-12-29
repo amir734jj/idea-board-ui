@@ -1,16 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Alert } from 'react-bootstrap';
-import Idea from '../idea';
+import Project from '../project';
 
-export const Board = ({ ideas }) => (
+export const Board = ({ projects = [] }) => (
   <div>
     <Alert variant="warning">
       <Alert.Link href="/manage">Introduce an Idea</Alert.Link>.
       You have not shared any idea. Share one and get a feedback!
     </Alert>
 
-    {/*{ ideas.map((idea, index) => (<Idea key={index} {...idea} />))}*/}
+    { projects.map((project, index) => (<Project key={index} {...project} />))}
   </div>
 );
 

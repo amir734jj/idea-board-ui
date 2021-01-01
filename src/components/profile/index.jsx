@@ -55,7 +55,7 @@ const ProfileForm = ({
   );
 };
 
-export class Profile extends React.Component {
+export class Index extends React.Component {
   componentDidMount() {
     this.props.getProfile().then();
   }
@@ -86,4 +86,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Index);

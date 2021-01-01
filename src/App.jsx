@@ -18,14 +18,13 @@ import Board from './components/board';
 import { accountInfo, refreshToken } from './actions';
 import Profile from './components/profile';
 import Manage from './components/manage';
-import AddIdea from './components/project/add';
 import Category from './components/category/Category';
+import { AddProject } from './components/project/add';
+import ViewProject from "./components/project/view";
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.props.refreshAccount().then();
+  async componentDidMount() {
+    await this.props.refreshAccount();
   }
 
   render() {
@@ -93,8 +92,11 @@ class App extends React.Component {
               <Route path="/manage">
                 <Manage />
               </Route>
-              <Route path="/idea/new">
-                <AddIdea />
+              <Route path="/project/new">
+                <AddProject />
+              </Route>
+              <Route path="/project/:id">
+                <ViewProject />
               </Route>
               <Route path="/">
                 <Board />

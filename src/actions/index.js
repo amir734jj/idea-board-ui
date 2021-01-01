@@ -1,6 +1,6 @@
 export * from './account.action';
 
-export * from './idea.action';
+export * from './project.action';
 
 export * from './profile.action';
 

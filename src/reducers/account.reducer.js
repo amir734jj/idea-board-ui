@@ -1,3 +1,4 @@
+import store from 'store';
 import {
   LOGIN, LOGOUT, REFRESH, REGISTER, ACCOUNT,
 } from '../constants';
@@ -48,7 +49,9 @@ export const accountReducer = (state = initialState, action) => {
       };
     case REGISTER.success:
     case LOGOUT.success:
-      return initialState;
+      return {
+        ...initialState,
+      };
     default:
       return state;
   }

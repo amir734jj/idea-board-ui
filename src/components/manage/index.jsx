@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
-export const Manage = ({ }) => {
+export const Index = ({ }) => {
   const history = useHistory();
 
   return (
@@ -17,4 +17,4 @@ export const Manage = ({ }) => {
 const mapStateToProps = ({ }) => ({
 });
 
-export default connect(mapStateToProps, null)(Manage);
+export default connect(mapStateToProps, null)(Index);

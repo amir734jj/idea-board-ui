@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Alert } from 'react-bootstrap';
 import Project from '../project';
 
-export const Board = ({ projects = [] }) => (
+export const Index = ({ projects = [] }) => (
   <div>
     <Alert variant="warning">
       <Alert.Link href="/manage">Introduce an Idea</Alert.Link>.
@@ -15,7 +15,7 @@ export const Board = ({ projects = [] }) => (
 );
 
 const mapStateToProps = (state) => ({
-  ideas: state.idea.ideas,
+  projects: Object.values(state.project.byId),
 });
 
-export default connect(mapStateToProps, null)(Board);
+export default connect(mapStateToProps, null)(Index);

@@ -2,7 +2,6 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup } from 'react-bootstrap';
-import { Redirect } from 'react-router-dom';
 import { register as registerAction } from '../../actions';
 import { AlertDismissible } from '../common/AlertDismissible';
 
@@ -67,25 +66,20 @@ const RegisterForm = ({ register }) => {
 };
 
 class Register extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { redirect: false };
-  }
-
-  handleRegister = async (...args) => {
-    await this.props.register(...args);
-    this.setState({ redirect: !this.props.error });
+  registerHandler = async (...args) => {
+    const { error } = await this.props.registerHandler(...args);
+    if (!error) {
+      this.props.history.push('/');
+    }
   }
 
   render() {
-    const { redirect } = this.state;
     const { error } = this.props;
 
     return (
       <>
         { error ? <AlertDismissible header="Register Failed" message={error.join('\n')} variant="danger" /> : null }
-        <RegisterForm register={this.handleRegister} />
-        { redirect ? <Redirect push to="/login" /> : null }
+        <RegisterForm register={this.registerHandler} />
       </>
     );
   }
@@ -96,7 +90,7 @@ const mapStateToProps = ({ account }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  register: (userInfo) => dispatch(registerAction(userInfo)),
+  registerHandler: (userInfo) => dispatch(registerAction(userInfo)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

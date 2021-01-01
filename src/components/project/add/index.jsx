@@ -2,8 +2,6 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup } from 'react-bootstrap';
-import { withRouter } from 'react-router-dom';
-import { compose } from 'redux';
 import { saveProject as saveProjectAction } from '../../../actions';
 import { AlertDismissible } from '../../common/AlertDismissible';
 
@@ -85,7 +83,4 @@ const mapDispatchToProps = (dispatch) => ({
   saveProject: (idea) => dispatch(saveProjectAction(idea)),
 });
 
-export default compose(
-  withRouter,
-  connect(mapStateToProps, mapDispatchToProps),
-)(AddProject);
+export default connect(mapStateToProps, mapDispatchToProps)(AddProject);

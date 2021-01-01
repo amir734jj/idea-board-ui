@@ -1,5 +1,5 @@
-import Idea from './Idea';
+import ViewProject from './view/index';
 import AddProject from './add';
 import UpdateProject from './update';
 
-export default { Idea, AddProject, UpdateProject };
+export default { ViewProject, AddProject, UpdateProject };

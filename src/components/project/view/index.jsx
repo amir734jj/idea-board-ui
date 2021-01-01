@@ -2,8 +2,9 @@ import React from 'react';
 import {
   Button, Card, Row, Col,
 } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
-const Idea = ({ header, title, body }) => (
+const ViewProject = ({ header, title, body }) => (
   <div>
     <Card>
       <Card.Header>{header}</Card.Header>
@@ -22,4 +23,12 @@ const Idea = ({ header, title, body }) => (
   </div>
 );
 
-export default Idea;
+const mapStateToProps = (state, { match: { params: { id } } }) => ({
+  project: state.project.byId[id],
+});
+
+const mapDispatchToProps = () => ({
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ViewProject);

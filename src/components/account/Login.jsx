@@ -2,16 +2,15 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup } from 'react-bootstrap';
-import { Redirect } from 'react-router-dom';
 import store from 'store';
 import { login as loginAction } from '../../actions';
 import { AlertDismissible } from '../common/AlertDismissible';
 
-const LoginForm = ({ login }) => {
+const LoginForm = ({ loginHandler }) => {
   const { register: formRegister, handleSubmit, errors } = useForm();
 
   return (
-    <Form onSubmit={handleSubmit(login)} className="pure-form pure-form-aligned">
+    <Form onSubmit={handleSubmit(loginHandler)} className="pure-form pure-form-aligned">
       <FormGroup>
         <Form.Label htmlFor="username">Username</Form.Label>
         <Form.Control
@@ -42,25 +41,20 @@ const LoginForm = ({ login }) => {
 };
 
 class Login extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { redirect: false };
-  }
-
-  handleLogin = async (...args) => {
-    await this.props.login(...args);
-    this.setState({ redirect: !this.props.error });
+  loginHandler = async (...args) => {
+    const { error, payload: { token } } = await this.props.loginHandler(...args);
+    if (!error) {
+      store.set('token', token);
+      this.props.history.push('/');
+    }
   }
 
   render() {
-    const { redirect } = this.state;
     const { error } = this.props;
-
     return (
       <>
         { error ? <AlertDismissible header="Login Failed" message={error.join('\n')} variant="danger" /> : null }
-        <LoginForm login={this.handleLogin} />
-        { redirect ? <Redirect push to="/" /> : null }
+        <LoginForm login={this.loginHandler} />
       </>
     );
   }
@@ -71,10 +65,7 @@ const mapStateToProps = ({ account }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  login: async (user) => {
-    const { payload: { token } } = await dispatch(loginAction(user));
-    store.set('token', token);
-  },
+  loginHandler: (user) => dispatch(loginAction(user)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

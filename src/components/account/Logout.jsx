@@ -1,35 +1,26 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import store from 'store';
 import { AlertDismissible } from '../common/AlertDismissible';
 import { logout as logoutAction } from '../../actions';
 
 class Logout extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { redirect: false };
-  }
-
-  componentDidMount() {
-    this.handleLogout().then();
+  async componentDidMount() {
+    await this.handleLogout();
   }
 
   handleLogout = async () => {
-    await this.props.logout();
-    this.setState({ redirect: !this.props.error });
+    const { error } = await this.props.logoutHandler();
+    if (!error) {
+      store.remove('token');
+      this.props.history.push('/');
+    }
   }
 
   render() {
-    const { redirect } = this.state;
     const { error } = this.props;
 
-    return (
-      <>
-        { error ? <AlertDismissible header="Register Failed" message={error.join('\n')} variant="danger" /> : null }
-        { redirect ? <Redirect push to="/login" /> : null }
-      </>
-    );
+    return error ? <AlertDismissible header="Logout Failed" message={error.join('\n')} variant="danger" /> : null;
   }
 }
 
@@ -38,10 +29,7 @@ const mapStateToProps = ({ account }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  logout: async () => {
-    await dispatch(logoutAction());
-    store.remove('token');
-  },
+  logoutHandler: () => dispatch(logoutAction()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Logout);

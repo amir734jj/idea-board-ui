@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { saveProject as saveProjectAction } from '../../../actions';
+import { updateProject as updateProjectAction } from '../../../actions';
 import { AlertDismissible } from '../../common/AlertDismissible';
 import ProjectEditorForm from '../commons/ProjectEditorForm';
 
-export class AddProject extends React.Component {
+export class UpdateProject extends React.Component {
   saveProjectHandler = async ({ categories, ...idea }) => {
     const { history } = this.props;
     const data = {
@@ -21,7 +21,7 @@ export class AddProject extends React.Component {
     return (
       <>
         <h3>
-          Introduce an Idea
+          Introduce an Side Project
         </h3>
 
         <div className="mt-4">
@@ -33,12 +33,12 @@ export class AddProject extends React.Component {
   }
 }
 
-const mapStateToProps = ({ category: { categories } }) => ({
-  categories,
+const mapStateToProps = (state, { match: { params: { id } } }) => ({
+  project: state.project.byId[id],
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  saveProjectHandler: (idea) => dispatch(saveProjectAction(idea)),
+  updateProjectHandler: (idea) => dispatch(updateProjectAction(idea)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddProject);
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateProject);

@@ -18,9 +18,8 @@ import Board from './components/board';
 import { accountInfo, refreshToken } from './actions';
 import Profile from './components/profile';
 import Manage from './components/manage';
-import Category from './components/category/Category';
 import { AddProject } from './components/project/add';
-import ViewProject from "./components/project/view";
+import { ViewProject } from './components/project';
 
 class App extends React.Component {
   async componentDidMount() {
@@ -72,7 +71,6 @@ class App extends React.Component {
         </Navbar>
         <div className="mt-4">
           <Container>
-            <Category />
             <Switch>
               <Route path="/login">
                 <Login />

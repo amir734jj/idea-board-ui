@@ -4,7 +4,7 @@ import {
 } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-const ViewProject = ({ header, title, body }) => (
+const ViewProject = ({ project: { header, title, body } }) => (
   <div>
     <Card>
       <Card.Header>{header}</Card.Header>

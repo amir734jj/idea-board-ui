@@ -7,7 +7,7 @@ import { categoryReducer } from './category.reducer';
 
 export const rootReducer = combineReducers({
   account: accountReducer,
-  idea: projectReducer,
+  project: projectReducer,
   global: globalReducer,
   profile: profileReducer,
   category: categoryReducer,

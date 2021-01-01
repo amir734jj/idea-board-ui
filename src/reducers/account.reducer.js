@@ -1,4 +1,3 @@
-import store from 'store';
 import {
   LOGIN, LOGOUT, REFRESH, REGISTER, ACCOUNT,
 } from '../constants';

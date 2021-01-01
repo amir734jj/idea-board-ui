@@ -1,4 +1,5 @@
 import Idea from './Idea';
-import AddIdea from './add';
+import AddProject from './add';
+import UpdateProject from './update';
 
-export default { Idea, AddIdea };
+export default { Idea, AddProject, UpdateProject };

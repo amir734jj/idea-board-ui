@@ -13,7 +13,8 @@ export const About = ({ name }) => (
       Privacy
     </h4>
     <ul>
-      <li> This website is open-source (<a href="https://github.com/amir734jj/idea-board-api">API</a>,
+      <li> This website is open-source (
+        <a href="https://github.com/amir734jj/idea-board-api">API</a>, {' '}
         <a href="https://github.com/amir734jj/idea-board-ui">UI</a>) so no monkey business
       </li>
       <li> Data on this site will NOT be sold to a third party</li>

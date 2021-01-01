@@ -1,8 +1,12 @@
 import { axios, createAsyncAction } from '../utilities';
-import { GET_IDEA, SAVE_IDEA, UPDATE_IDEA } from '../constants';
+import { GET_PROJECT, SAVE_PROJECT, UPDATE_PROJECT } from '../constants';
 
-export const getIdea = (id) => createAsyncAction(GET_IDEA, () => axios.get(`/idea/${id}`), id);
+const prefix = '/project';
 
-export const updateIdea = (id, idea) => createAsyncAction(UPDATE_IDEA, () => axios.put(`/idea/${id}`, idea), idea);
+export const getProject = (id) => createAsyncAction(GET_PROJECT, () => axios.get(`${prefix}/${id}`), id);
 
-export const saveIdea = (idea) => createAsyncAction(SAVE_IDEA, () => axios.post('/idea', idea), idea);
+export const getProjects = (id) => createAsyncAction(GET_PROJECT, () => axios.get(`${prefix}`), id);
+
+export const updateProject = (id, idea) => createAsyncAction(UPDATE_PROJECT, () => axios.put(`${prefix}/${id}`, idea), idea);
+
+export const saveProject = (idea) => createAsyncAction(SAVE_PROJECT, () => axios.post(`${prefix}/`, idea), idea);

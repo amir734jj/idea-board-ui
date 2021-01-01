@@ -12,9 +12,10 @@ export const ACCOUNT = buildActionNames('ACCOUNT');
 export const REFRESH = buildActionNames('REFRESH');
 
 // project
-export const GET_IDEA = buildActionNames('GET_IDEA');
-export const SAVE_IDEA = buildActionNames('SAVE_IDEA');
-export const UPDATE_IDEA = buildActionNames('UPDATE_IDEA');
+export const GET_PROJECT = buildActionNames('GET_PROJECT');
+export const GET_PROJECTS = buildActionNames('GET_PROJECTS');
+export const SAVE_PROJECT = buildActionNames('SAVE_PROJECT');
+export const UPDATE_PROJECT = buildActionNames('UPDATE_PROJECT');
 
 // board
 export const GET_BOARD = buildActionNames('GET_BOARD');

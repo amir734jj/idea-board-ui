@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { Button, Form, FormGroup } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import { saveIdea as saveIdeaAction } from '../../../actions';
+import { saveProject as saveProjectAction } from '../../../actions';
 import { AlertDismissible } from '../../common/AlertDismissible';
 
-const AddIdeaForm = ({ addIdea, categories }) => {
+const AddProjectForm = ({ addIdea, categories }) => {
   const { register: formRegister, handleSubmit, errors } = useForm();
 
   return (
@@ -48,7 +48,7 @@ const AddIdeaForm = ({ addIdea, categories }) => {
   );
 };
 
-export class AddIdea extends React.Component {
+export class AddProject extends React.Component {
   handleAddIdea = async ({ categories, ...idea }) => {
     const { history } = this.props;
     const data = {
@@ -70,7 +70,7 @@ export class AddIdea extends React.Component {
 
         <div className="mt-4">
           {this.props.error ? <AlertDismissible header="Login Failed" message={this.props.error.join('\n')} variant="danger" /> : null}
-          <AddIdeaForm categories={categories} addIdea={this.handleAddIdea} />
+          <AddProjectForm categories={categories} addIdea={this.handleAddIdea} />
         </div>
       </>
     );
@@ -82,10 +82,10 @@ const mapStateToProps = ({ category: { categories } }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addIdea: (idea) => dispatch(saveIdeaAction(idea)),
+  saveProject: (idea) => dispatch(saveProjectAction(idea)),
 });
 
 export default compose(
   withRouter,
   connect(mapStateToProps, mapDispatchToProps),
-)(AddIdea);
+)(AddProject);

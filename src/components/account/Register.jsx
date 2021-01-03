@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup } from 'react-bootstrap';
 import { register as registerAction } from '../../actions';
-import { AlertDismissible } from '../common/AlertDismissible';
+import { AlertDismissible } from '../common';
 
 const RegisterForm = ({ register }) => {
   const { register: formRegister, handleSubmit, errors } = useForm();
@@ -59,6 +59,18 @@ const RegisterForm = ({ register }) => {
           />
           {errors.password && <Form.Control.Feedback type="invalid">This field is required</Form.Control.Feedback>}
         </FormGroup>
+        <FormGroup>
+          <Form.Label htmlFor="passwordConfirmation">Password Confirmation</Form.Label>
+          <Form.Control
+            name="passwordConfirmation"
+            type="password"
+            className="form-control"
+            id="passwordConfirmation"
+            isInvalid={errors.passwordConfirmation}
+            ref={formRegister({ required: true })}
+          />
+          {errors.passwordConfirmation && <Form.Control.Feedback type="invalid">This field is required</Form.Control.Feedback>}
+        </FormGroup>
         <Button type="primary">Submit</Button>
       </Form>
     </div>
@@ -69,7 +81,7 @@ class Register extends React.Component {
   registerHandler = async (...args) => {
     const { error } = await this.props.registerHandler(...args);
     if (!error) {
-      this.props.history.push('/');
+      this.props.history.push('/login');
     }
   }
 

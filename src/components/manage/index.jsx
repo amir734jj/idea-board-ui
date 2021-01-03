@@ -8,8 +8,7 @@ export const Index = ({ }) => {
 
   return (
     <div>
-
-      <Button variant="success"  onClick={() => history.push('/project/new')}>Introduce Idea</Button>
+      <Button variant="success" onClick={() => history.push('/project/new')}>Introduce Idea</Button>
     </div>
   );
 };

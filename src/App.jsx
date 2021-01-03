@@ -18,8 +18,8 @@ import Board from './components/board';
 import { accountInfo, refreshToken } from './actions';
 import Profile from './components/profile';
 import Manage from './components/manage';
-import { AddProject } from './components/project/add';
-import { ViewProject } from './components/project';
+import { AddProject, ViewProject } from './components/project';
+import { AuthenticatedRoute, UnAuthenticatedRoute } from './components/common';
 
 class App extends React.Component {
   async componentDidMount() {
@@ -72,33 +72,15 @@ class App extends React.Component {
         <div className="mt-4">
           <Container>
             <Switch>
-              <Route path="/login">
-                <Login />
-              </Route>
-              <Route path="/register">
-                <Register />
-              </Route>
-              <Route path="/about">
-                <About />
-              </Route>
-              <Route path="/logout">
-                <Logout />
-              </Route>
-              <Route path="/profile">
-                <Profile />
-              </Route>
-              <Route path="/manage">
-                <Manage />
-              </Route>
-              <Route path="/project/new">
-                <AddProject />
-              </Route>
-              <Route path="/project/:id">
-                <ViewProject />
-              </Route>
-              <Route path="/">
-                <Board />
-              </Route>
+              <Route path="/login" render={(p) => <UnAuthenticatedRoute component={Login} {...p} />} />
+              <Route path="/register" render={(p) => <AuthenticatedRoute component={Register} {...p} />} />
+              <Route path="/about" component={About} />
+              <Route path="/logout" render={(p) => <AuthenticatedRoute component={Logout} {...p} />} />
+              <Route path="/profile" render={(p) => <AuthenticatedRoute component={Profile} {...p} />} />
+              <Route path="/manage" render={(p) => <AuthenticatedRoute component={Manage} {...p} />} />
+              <Route path="/project/new" render={(p) => <AuthenticatedRoute component={AddProject} {...p} />} />
+              <Route path="/project/:id" render={(p) => <AuthenticatedRoute component={ViewProject} {...p} />} />
+              <Route path="/" component={Board} />
             </Switch>
           </Container>
         </div>

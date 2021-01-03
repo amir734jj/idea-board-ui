@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Button, Form, FormGroup } from 'react-bootstrap';
 import store from 'store';
 import { login as loginAction } from '../../actions';
-import { AlertDismissible } from '../common/AlertDismissible';
+import { AlertDismissible } from '../common';
 
 const LoginForm = ({ loginHandler }) => {
   const { register: formRegister, handleSubmit, errors } = useForm();
@@ -54,7 +54,7 @@ class Login extends React.Component {
     return (
       <>
         { error ? <AlertDismissible header="Login Failed" message={error.join('\n')} variant="danger" /> : null }
-        <LoginForm login={this.loginHandler} />
+        <LoginForm loginHandler={this.loginHandler} />
       </>
     );
   }

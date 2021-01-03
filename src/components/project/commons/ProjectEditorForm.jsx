@@ -1,9 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, Form, FormGroup } from 'react-bootstrap';
+import { CategoryEditor } from '../../category';
 
 const ProjectEditorForm = ({ submitHandler, categories, project }) => {
-  const { register: formRegister, handleSubmit, errors } = useForm(project);
+  const {
+    register: formRegister, handleSubmit, errors, setValue, getValues,
+  } = useForm(project);
 
   return (
     <Form onSubmit={handleSubmit(submitHandler)} className="pure-form pure-form-aligned">
@@ -32,13 +35,14 @@ const ProjectEditorForm = ({ submitHandler, categories, project }) => {
         />
         {errors.description && <Form.Control.Feedback type="invalid">This field is required</Form.Control.Feedback>}
       </FormGroup>
-      <Form.Group>
+      <Form.Group hidden>
         <Form.Label>Category</Form.Label>
         <Form.Control as="select" ref={formRegister({ required: true })} name="categories" multiple>
-          { categories.map((category, index) => (<option key={index}>{category}</option>))}
+          { categories.map((category) => (<option key={category.id}>{category.name}</option>))}
         </Form.Control>
       </Form.Group>
-      <Button type="primary">Save</Button>
+      <CategoryEditor values={getValues('categories')} handleChange={(x) => setValue('categories', x)} />
+      <Button type="submit">Save</Button>
     </Form>
   );
 };

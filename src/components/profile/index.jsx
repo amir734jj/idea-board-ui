@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { Button, Form, FormGroup } from 'react-bootstrap';
 import { accountInfo, getProfile, updateProfile as updateProfileAction } from '../../actions';
-import { AlertDismissible } from '../common/AlertDismissible';
+import { AlertDismissible } from '../common';
 
 const ProfileForm = ({
   name, email, username, updateProfile,

@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { saveProject as saveProjectAction } from '../../../actions';
-import { AlertDismissible } from '../../common/AlertDismissible';
+import { AlertDismissible } from '../../common';
 import ProjectEditorForm from '../commons/ProjectEditorForm';
+import { getAllCategories } from '../../../selectors';
 
-export class AddProject extends React.Component {
+class AddProject extends React.Component {
   saveProjectHandler = async ({ categories, ...idea }) => {
     const { history } = this.props;
     const data = {
@@ -20,12 +21,10 @@ export class AddProject extends React.Component {
 
     return (
       <>
-        <h3>
-          Introduce an Idea
-        </h3>
+        <h3> Introduce an Side Project </h3>
 
         <div className="mt-4">
-          {this.props.error ? <AlertDismissible header="Login Failed" message={this.props.error.join('\n')} variant="danger" /> : null}
+          {this.props.error && <AlertDismissible header="Login Failed" message={this.props.error.join('\n')} variant="danger" />}
           <ProjectEditorForm categories={categories} submitHandler={this.saveProjectHandler} />
         </div>
       </>
@@ -33,8 +32,8 @@ export class AddProject extends React.Component {
   }
 }
 
-const mapStateToProps = ({ category: { categories } }) => ({
-  categories,
+const mapStateToProps = (state) => ({
+  categories: getAllCategories(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

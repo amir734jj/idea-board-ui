@@ -41,7 +41,7 @@ export const projectReducer = (state = initialState, action) => {
           ...state.byId,
           [action.payload.id]: action.payload,
         },
-        allIds: pushIfNotExists(state.allIds, action.payload),
+        allIds: pushIfNotExists(state.allIds, action.payload.id),
         error: false,
         loading: false,
       };

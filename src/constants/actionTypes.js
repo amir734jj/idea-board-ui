@@ -26,3 +26,4 @@ export const UPDATE_PROFILE = buildActionNames('UPDATE_PROFILE');
 
 // category
 export const GET_CATEGORIES = buildActionNames('GET_CATEGORIES');
+export const SAVE_CATEGORIES = buildActionNames('SAVE_CATEGORIES');

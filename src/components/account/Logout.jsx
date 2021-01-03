@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import store from 'store';
-import { AlertDismissible } from '../common/AlertDismissible';
+import { AlertDismissible } from '../common';
 import { logout as logoutAction } from '../../actions';
 
 class Logout extends React.Component {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Alert } from 'react-bootstrap';
 
-export function AlertDismissible({ message, header, variant }) {
+const AlertDismissible = ({ message, header, variant }) => {
   const [show, setShow] = useState(true);
 
   if (show) {
@@ -13,4 +13,6 @@ export function AlertDismissible({ message, header, variant }) {
     );
   }
   return null;
-}
+};
+
+export default AlertDismissible;

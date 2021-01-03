@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { updateProject as updateProjectAction } from '../../../actions';
-import { AlertDismissible } from '../../common/AlertDismissible';
+import { AlertDismissible } from '../../common';
 import ProjectEditorForm from '../commons/ProjectEditorForm';
+import { getAllCategories } from '../../../selectors';
 
 export class UpdateProject extends React.Component {
   saveProjectHandler = async ({ categories, ...idea }) => {
@@ -20,12 +21,10 @@ export class UpdateProject extends React.Component {
 
     return (
       <>
-        <h3>
-          Introduce an Side Project
-        </h3>
+        <h3> Introduce an Side Project </h3>
 
         <div className="mt-4">
-          {this.props.error ? <AlertDismissible header="Login Failed" message={this.props.error.join('\n')} variant="danger" /> : null}
+          {this.props.error && <AlertDismissible header="Login Failed" message={this.props.error.join('\n')} variant="danger" />}
           <ProjectEditorForm categories={categories} submitHandler={this.saveProjectHandler} />
         </div>
       </>
@@ -35,6 +34,7 @@ export class UpdateProject extends React.Component {
 
 const mapStateToProps = (state, { match: { params: { id } } }) => ({
   project: state.project.byId[id],
+  categories: getAllCategories(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,7 +1,9 @@
-import { GET_CATEGORIES } from '../constants';
+import { GET_CATEGORIES, SAVE_CATEGORIES } from '../constants';
+import { byId, pushById, pushIfNotExists } from '../utilities';
 
 const initialState = {
-  categories: [],
+  byId: {},
+  allIds: [],
   fetching: false,
   error: null,
 };
@@ -9,12 +11,14 @@ const initialState = {
 export const categoryReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_CATEGORIES.request:
+    case SAVE_CATEGORIES.request:
       return {
         ...state,
         fetching: true,
         error: null,
       };
     case GET_CATEGORIES.failure:
+    case SAVE_CATEGORIES.failure:
       return {
         ...state,
         fetching: false,
@@ -26,9 +30,21 @@ export const categoryReducer = (state = initialState, action) => {
     case GET_CATEGORIES.success:
       return {
         ...state,
-        categories: action.payload,
-        fetching: false,
-        error: null,
+        byId: byId(state.byId, (x) => x.id),
+        allIds: pushById(state.allIds, action.payload, (x) => x.id),
+        error: false,
+        loading: false,
+      };
+    case SAVE_CATEGORIES.success:
+      return {
+        ...state,
+        byId: {
+          ...state.byId,
+          [action.payload.id]: action.payload,
+        },
+        allIds: pushIfNotExists(state.allIds, action.payload.id),
+        error: false,
+        loading: false,
       };
     default:
       return state;

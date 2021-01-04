@@ -1,7 +1,7 @@
 import {
   GET_PROJECT, GET_PROJECTS, SAVE_PROJECT, UPDATE_PROJECT,
 } from '../constants';
-import { byId, pushById, pushIfNotExists } from '../utilities';
+import { byId, pushIfNotExists } from '../utilities';
 
 const initialState = {
   byId: {},
@@ -48,8 +48,8 @@ export const projectReducer = (state = initialState, action) => {
     case GET_PROJECTS.success:
       return {
         ...state,
-        byId: byId(state.byId, (x) => x.id),
-        allIds: pushById(state.allIds, action.payload, (x) => x.id),
+        byId: byId(action.payload, (x) => x.id),
+        allIds: action.payload.map(({ id }) => id),
         error: false,
         loading: false,
       };

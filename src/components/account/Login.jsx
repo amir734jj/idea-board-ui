@@ -35,16 +35,16 @@ const LoginForm = ({ loginHandler }) => {
         />
         {errors.password && <Form.Control.Feedback type="invalid">This field is required</Form.Control.Feedback>}
       </FormGroup>
-      <Button type="primary">Submit</Button>
+      <Button type="submit">Submit</Button>
     </Form>
   );
 };
 
 class Login extends React.Component {
   loginHandler = async (...args) => {
-    const { error, payload: { token } } = await this.props.loginHandler(...args);
+    const { error, payload } = await this.props.loginHandler(...args);
     if (!error) {
-      store.set('token', token);
+      store.set('token', payload.token);
       this.props.history.push('/');
     }
   }

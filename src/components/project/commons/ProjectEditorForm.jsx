@@ -3,7 +3,8 @@ import { useForm } from 'react-hook-form';
 import { Button, Form, FormGroup } from 'react-bootstrap';
 import { CategoryEditor } from '../../category';
 
-const ProjectEditorForm = ({ submitHandler, categories, project }) => {
+const ProjectEditorForm = ({ submitHandler, project }) => {
+  const { categories } = project;
   const {
     register: formRegister, handleSubmit, errors, setValue, getValues,
   } = useForm(project);
@@ -37,11 +38,9 @@ const ProjectEditorForm = ({ submitHandler, categories, project }) => {
       </FormGroup>
       <Form.Group hidden>
         <Form.Label>Category</Form.Label>
-        <Form.Control as="select" ref={formRegister({ required: true })} name="categories" multiple>
-          { categories.map((category) => (<option key={category.id}>{category.name}</option>))}
-        </Form.Control>
+        <Form.Control as="select" ref={formRegister({ required: false })} name="categories" multiple />
       </Form.Group>
-      <CategoryEditor values={getValues('categories')} handleChange={(x) => setValue('categories', x)} />
+      <CategoryEditor values={getValues('categories') || categories} handleChange={(x) => setValue('categories', x)} />
       <Button type="submit">Save</Button>
     </Form>
   );

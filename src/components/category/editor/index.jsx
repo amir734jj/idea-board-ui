@@ -12,10 +12,8 @@ class Category extends React.Component {
   inputTagsChangeHandler = async (updatedTerms) => {
     const { categories, handleChange, saveCategoryHandler } = this.props;
 
-    const toBeUpdatedCategories = updatedTerms
-      .map((name) => !categories.find((y) => y.name === name));
-
-    const response = await Promise.all(toBeUpdatedCategories
+    const response = await Promise.all(updatedTerms
+      .filter((name) => !categories.find((y) => y.name === name))
       .map((name) => ({ name }))
       .map((x) => saveCategoryHandler(x)));
 
@@ -28,8 +26,8 @@ class Category extends React.Component {
   }
 
   render() {
-    const { categories } = this.props;
-    const terms = categories.map(({ name }) => name);
+    const { values } = this.props;
+    const terms = values.map(({ name }) => name);
     return (
       <InputTags
         values={terms}

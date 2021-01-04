@@ -21,7 +21,7 @@ export class UpdateProject extends React.Component {
 
     return (
       <>
-        <h3> Introduce an Side Project </h3>
+        <h3> Introduce Your Side Project </h3>
 
         <div className="mt-4">
           {this.props.error && <AlertDismissible header="Login Failed" message={this.props.error.join('\n')} variant="danger" />}

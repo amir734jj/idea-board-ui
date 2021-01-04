@@ -12,10 +12,10 @@ const buildActions = (actionNames) => ({
       stack: err.stack,
     },
   }),
-  success: ({ data }) => ({
+  success: (res) => ({
     type: actionNames.success,
     error: false,
-    payload: data,
+    payload: res.data,
   }),
 });
 

@@ -3,37 +3,30 @@ import { connect } from 'react-redux';
 import { saveProject as saveProjectAction } from '../../../actions';
 import { AlertDismissible } from '../../common';
 import ProjectEditorForm from '../commons/ProjectEditorForm';
-import { getAllCategories } from '../../../selectors';
 
 class AddProject extends React.Component {
-  saveProjectHandler = async ({ categories, ...idea }) => {
+  saveProjectHandler = async (project) => {
     const { history } = this.props;
-    const data = {
-      ...idea,
-      categories: this.props.categories.filter(({ name }) => categories.includes(name)),
-    };
-    await this.props.saveProjectHandler(data);
-    history.push('/profile');
+    await this.props.saveProjectHandler(project);
+    history.push('/');
   }
 
   render() {
-    const categories = this.props.categories.map(({ name }) => name);
-
     return (
       <>
-        <h3> Introduce an Side Project </h3>
+        <h3> Introduce Your Side Project </h3>
 
         <div className="mt-4">
           {this.props.error && <AlertDismissible header="Login Failed" message={this.props.error.join('\n')} variant="danger" />}
-          <ProjectEditorForm categories={categories} submitHandler={this.saveProjectHandler} />
+          <ProjectEditorForm project={{ categories: [] }} submitHandler={this.saveProjectHandler} />
         </div>
       </>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  categories: getAllCategories(state),
+const mapStateToProps = () => ({
+
 });
 
 const mapDispatchToProps = (dispatch) => ({

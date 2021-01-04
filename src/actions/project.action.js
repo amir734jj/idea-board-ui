@@ -5,7 +5,7 @@ const prefix = '/project';
 
 export const getProject = (id) => createAsyncAction(GET_PROJECT, () => axios.get(`${prefix}/${id}`), id);
 
-export const getProjects = (id) => createAsyncAction(GET_PROJECT, () => axios.get(`${prefix}`), id);
+export const getAllProjects = (id) => createAsyncAction(GET_PROJECT, () => axios.get(`${prefix}`), id);
 
 export const updateProject = (id, idea) => createAsyncAction(UPDATE_PROJECT, () => axios.put(`${prefix}/${id}`, idea), idea);
 

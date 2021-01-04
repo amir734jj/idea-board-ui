@@ -43,7 +43,9 @@ export const InputTags = ({ values, handleChange }) => {
   };
 
   const handleRemove = (index) => {
-    setTerms(terms.filter((_, i) => i !== index));
+    const newTerms = terms.filter((_, i) => i !== index);
+    setTerms(newTerms);
+    (handleChange || (() => {}))(newTerms);
   };
 
   return (

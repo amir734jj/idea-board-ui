@@ -15,7 +15,7 @@
     "@types/react-dom": "^16.9.0",
     "@types/react-redux": "^7.1.9",
     "@types/redux": "^3.6.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.0",
     "jwt-decode": "^2.2.0",
     "memoizee": "^0.4.14",
